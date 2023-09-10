@@ -12,7 +12,8 @@ function App() {
     const AddTask = () => {
         const task = {
             id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
-            taskName: newTask
+            taskName: newTask,
+            completed: false
         }
         setTodoList([...todoList, task])
         console.log(todoList)
@@ -23,6 +24,18 @@ function App() {
         setTodoList(newArr)
     }
 
+    const completedTask = (id) => {
+        console.log("completedTask called with id:", id);
+        setTodoList(
+            todoList.map(item => {
+                if (item.id === id) {
+                    return {...item, completed: true}
+                } else {
+                    return item
+                }
+            })
+        )
+    }
     const handleChange = (event) => {
         setNewTask(event.target.value)
     }
@@ -36,7 +49,7 @@ function App() {
             <div className="list">
                 {
                     todoList.map((task, index) => {
-                        return <Task taskName={task.taskName} id={task.id} key={task.id} deleteTask={deleteTask}/>
+                        return <Task taskName={task.taskName} id={task.id} key={task.id} completed={task.completed} deleteTask={deleteTask} completedTask={completedTask}/>
                     })
                 }
             </div>
