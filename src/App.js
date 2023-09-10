@@ -2,29 +2,44 @@ import './App.css';
 import {User} from './User';
 import {Planet} from "./Planet";
 import {useState} from "react";
+import {Task} from "./Task";
 
 function App() {
 
-    const [count, setCount] = useState(0)
+    const [todoList, setTodoList] = useState([])
+    const [newTask, setNewTask] = useState('')
 
-    const increaseCount = () => {
-        setCount(count + 1)
+    const AddTask = () => {
+        const task = {
+            id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
+            taskName: newTask
+        }
+        setTodoList([...todoList, task])
+        console.log(todoList)
     }
 
-    const decreaseCount = () => {
-        setCount(count - 1)
+    const deleteTask = (id) => {
+        const newArr = todoList.filter(item => item.id !== id)
+        setTodoList(newArr)
     }
 
-    const setCountToZero = () => {
-        setCount(0)
+    const handleChange = (event) => {
+        setNewTask(event.target.value)
     }
 
     return (
         <div className="App">
-            <button onClick={increaseCount}>Increase</button>
-            <button onClick={decreaseCount}>Decrease</button>
-            <button onClick={setCountToZero}>Set to zero</button>
-           <h1> {count}</h1>
+            <div className="addTask">
+                <input type="text" onChange={handleChange}/>
+                <button onClick={AddTask}> add Task</button>
+            </div>
+            <div className="list">
+                {
+                    todoList.map((task, index) => {
+                        return <Task taskName={task.taskName} id={task.id} key={task.id} deleteTask={deleteTask}/>
+                    })
+                }
+            </div>
         </div>
     )
 }
