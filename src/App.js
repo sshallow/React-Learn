@@ -5,26 +5,26 @@ import {useState} from "react";
 
 function App() {
 
-    // const [age, setAge] = useState(21)
-    const [inputValue, setInputValue] = useState("")
+    const [count, setCount] = useState(0)
 
-    // const increaseAge = () => {
-    //     setAge(age - 1)
-    // }
+    const increaseCount = () => {
+        setCount(count + 1)
+    }
 
-    const onChange = (e) => {
-        setInputValue(e.target.value)
+    const decreaseCount = () => {
+        setCount(count - 1)
+    }
+
+    const setCountToZero = () => {
+        setCount(0)
     }
 
     return (
         <div className="App">
-           {/* //{age}*/}
-           {/* //<button onClick={increaseAge}> Increase Age</button>*/}
-           <input type="text" onChange={onChange}/>
-            <h1>
-
-                {inputValue}
-            </h1>
+            <button onClick={increaseCount}>Increase</button>
+            <button onClick={decreaseCount}>Decrease</button>
+            <button onClick={setCountToZero}>Set to zero</button>
+           <h1> {count}</h1>
         </div>
     )
 }
