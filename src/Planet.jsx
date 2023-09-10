@@ -1,9 +1,7 @@
 export const Planet = (props) => {
     return (
-        props.isGasPlanet && (
-            <h1>
-                {props.name}
-            </h1>
-        )
+        <h1>
+            {props.name}
+        </h1>
     )
 }

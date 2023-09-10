@@ -1,6 +1,6 @@
 import './App.css';
 import {User} from './User';
-import  {Planet} from "./Planet";
+import {Planet} from "./Planet";
 
 function App() {
 
@@ -35,25 +35,22 @@ function App() {
     // )
 
     const planets = [
-        { name: "Mercury", isGasPlanet: true },
-        { name: "Venus", isGasPlanet: true },
-        { name: "Earth", isGasPlanet: true },
-        { name: "Mars", isGasPlanet: false },
-        { name: "Jupiter", isGasPlanet: true },
-        { name: "Saturn", isGasPlanet: false },
+        {name: "Mercury", isGasPlanet: true},
+        {name: "Venus", isGasPlanet: true},
+        {name: "Earth", isGasPlanet: true},
+        {name: "Mars", isGasPlanet: false},
+        {name: "Jupiter", isGasPlanet: true},
+        {name: "Saturn", isGasPlanet: false},
     ]
 
     return (
         <div className="App">
             {
-                planets.map((planet, index) => {
-                    return <Planet key={index} name={planet.name} isGasPlanet={planet.isGasPlanet} />
-                })
+                planets.map((planet, index) => planet.isGasPlanet && <Planet key={index} name={planet.name} isGasPlanet={planet.isGasPlanet} />)
             }
         </div>
     )
 }
-
 
 
 const GetName = () => {
