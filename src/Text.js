@@ -4,10 +4,11 @@ export const Text = (props) => {
 
     useEffect(() => {
         console.log("useEffect")
+        document.title = props.text
         return () =>{
             console.log("unmount")
         }
-    },[])
+    },[props.text])
 
     return (<div>
             <input type="text" onChange={props.inputOnChange}/>
