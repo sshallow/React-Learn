@@ -12,15 +12,24 @@ import {Menu} from "./page/Menu";
 import {Contact} from "./page/Contact";
 import {NotFound} from "./page/NotFound";
 import {NavBar} from "./page/NavBar";
-function App() {
+import {Profile} from "./page/Profile";
+import {createContext} from "react";
 
+export
+function App() {
+    const [username, setUsername] = useState("");
+    const changeName = (changedName) => {
+        console.log("changedName", changedName)
+        setUsername(changedName);
+    }
     return (
         <div className="App">
             <Router>
                 <NavBar></NavBar>
                 <Routes>
-                    <Route path="/" element={<Home/>}/>
+                    <Route path="/" element={<Home username={username}/>}/>
                     <Route path="/Menu" element={<Menu/>}/>
+                    <Route path="/Profile" element={<Profile block={changeName} username={username}/>}/>
                     <Route path="/Contact" element={<Contact/>}/>
                     <Route path="/*" element={<NotFound/>}/>
 
