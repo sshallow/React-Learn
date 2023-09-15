@@ -1,11 +1,14 @@
 import {useState} from "react";
-export const ChangeProfile = (props) => {
+import {useContext} from "react";
+import {UserContext} from "../App";
+export const ChangeProfile = () => {
+    const {setUsername} = useContext(UserContext);
     const [newName, setNewName] = useState("");
     return (
         <div>
             {""}
             <input onChange={(event) => {setNewName(event.target.value)}}/>
-            <button onClick={() => props.click(newName)}>change name</button>
+            <button onClick={() => setUsername(newName)}>change name</button>
         </div>
     )
 }
